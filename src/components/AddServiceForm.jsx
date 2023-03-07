@@ -10,6 +10,7 @@ import {
 import Button from "./Button";
 
 function AddServiceForm() {
+	const baseUrl = import.meta.env.VITE_BASE_URL;
 	const [email, setEmail] = useState("");
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
@@ -36,7 +37,7 @@ function AddServiceForm() {
 			};
 			console.log(payload);
 
-			const res = await fetch("http://localhost:9000/api/services/new", {
+			const res = await fetch(`${baseUrl}/services/new`, {
 				method: "post",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(payload),
