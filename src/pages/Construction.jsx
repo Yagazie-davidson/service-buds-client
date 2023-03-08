@@ -9,7 +9,7 @@ function Construction() {
 					<h1 className="font-extrabold text-6xl tablet:text-8xl text-center text-black max-w-6xl">
 						This page is under Construction
 					</h1>
-					<img src={cons} alt="Construction" className="" />
+					<img src={cons} alt="Construction" />
 				</main>
 			</Layout>
 		</div>
