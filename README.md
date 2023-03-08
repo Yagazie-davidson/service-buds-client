@@ -8,6 +8,31 @@ Service providers are required to post some certain informations that will be st
 ### 🔖 Tech Stack
 The code base of this repo uses React JS, Tailwind CSS <br> <br>
 
+### Setup
+
+1. [Fork](https://github.com/Yagazie-davidson/service-buds-client) this repository
+2. Clone the repo
+
+   ```console
+   $ git clone git@github.com:<your github username>/service-buds-client.git
+   ```
+3. Navigate to the cloned directory
+
+   ```console
+   $ cd service-buds-client
+   ```
+4. Install dependencies
+
+   ```console
+   $ yarn
+   ```
+5. Start the project with vite
+
+   ```console
+   $ yarn run dev
+   ```
+### Enviroment Variable
+`VITE_BASE_URL = ********` contact Author
 ### Server side Repo
 <a href="https://github.com/Yagazie-davidson/service-buds-server">Server</a>
 
