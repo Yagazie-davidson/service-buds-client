@@ -10,6 +10,10 @@ module.exports = {
 				pri: "#000000",
 			},
 		},
+		screens: {
+			mobile: "420px",
+			tablet: "640px",
+		},
 	},
 	plugins: [],
 };
