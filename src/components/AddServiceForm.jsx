@@ -12,7 +12,7 @@ import ServiceContext from "../context/ServicesContext";
 
 function AddServiceForm() {
 	const baseUrl = import.meta.env.VITE_BASE_URL;
-	const { setAddServiceState } = useContext(ServiceContext);
+	const { setAddServiceState, getServices } = useContext(ServiceContext);
 	const [email, setEmail] = useState("");
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
@@ -45,6 +45,7 @@ function AddServiceForm() {
 			const data = await res.json();
 			console.log(data);
 			setAddServiceState(false);
+			getServices(baseUrl);
 		} catch (error) {
 			console.log(error);
 			setAddServiceState(false);
