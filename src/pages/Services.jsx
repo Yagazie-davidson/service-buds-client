@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import AddServiceForm from "../components/AddServiceForm";
 import Button from "../components/Button";
 import FIlterService from "../components/FIlterService";
 import ServiceTable from "../components/ServiceTable";
+import ServiceContext from "../context/ServicesContext";
 import Layout from "../Layout/Layout";
 
 function Services() {
-	const [addServiceState, setAddServiceState] = useState(false);
+	const { addServiceState, setAddServiceState } = useContext(ServiceContext);
 	const toggleAddServiceForm = () => {
 		setAddServiceState(prevState => !prevState);
 	};

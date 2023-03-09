@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
 	FormControl,
 	FormLabel,
@@ -8,9 +8,11 @@ import {
 	Select,
 } from "@chakra-ui/react";
 import Button from "./Button";
+import ServiceContext from "../context/ServicesContext";
 
 function AddServiceForm() {
 	const baseUrl = import.meta.env.VITE_BASE_URL;
+	const { setAddServiceState } = useContext(ServiceContext);
 	const [email, setEmail] = useState("");
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
@@ -35,8 +37,6 @@ function AddServiceForm() {
 				room: room.toLowerCase(),
 				date,
 			};
-			console.log(payload);
-
 			const res = await fetch(`${baseUrl}services/new`, {
 				method: "post",
 				headers: { "Content-Type": "application/json" },
@@ -44,8 +44,10 @@ function AddServiceForm() {
 			});
 			const data = await res.json();
 			console.log(data);
+			setAddServiceState(false);
 		} catch (error) {
 			console.log(error);
+			setAddServiceState(false);
 		}
 		set;
 		setEmail("");
