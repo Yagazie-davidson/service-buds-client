@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import Layout from "../Layout/Layout";
 
@@ -13,7 +14,9 @@ function Home() {
 					cassava garri ewa and ehhh ehhhhnn. The farmer will make money, the
 					dinner would be cassava, eba, ewa and everything.
 				</p>
-				<Button text={"Explore Services"} className={"mt-10"} />
+				<Link to="/services">
+					<Button text={"Explore Services"} className={"mt-10"} />
+				</Link>
 			</main>
 		</Layout>
 	);
