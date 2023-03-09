@@ -13,26 +13,17 @@ import {
 import ServiceContext from "../context/ServicesContext";
 
 function ServiceTable() {
-	const { servicesList, setServicesList, loadingService, setLoadingService } =
-		useContext(ServiceContext);
+	const {
+		servicesList,
+		setServicesList,
+		loadingService,
+		setLoadingService,
+		getServices,
+	} = useContext(ServiceContext);
 	const baseUrl = import.meta.env.VITE_BASE_URL;
-	const getServices = async () => {
-		setLoadingService(true);
-		try {
-			const res = await fetch(`${baseUrl}services/all`, {
-				method: "get",
-				headers: { "Content-Type": "application/json" },
-			});
-			const data = await res.json();
-			setServicesList(data);
-			setLoadingService(false);
-		} catch {
-			setLoadingService(false);
-		}
-	};
 
 	useEffect(() => {
-		getServices();
+		getServices(baseUrl);
 	}, []);
 	return (
 		<div className="mt-10">
