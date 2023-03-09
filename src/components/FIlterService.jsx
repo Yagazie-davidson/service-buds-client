@@ -2,17 +2,23 @@ import React, { useContext } from "react";
 import { Divider, Center } from "@chakra-ui/react";
 import ServiceContext from "../context/ServicesContext";
 function FIlterService() {
-	const { servicesList, setServicesList } = useContext(ServiceContext);
+	const { servicesList, setServicesList, loadingService, setLoadingService } =
+		useContext(ServiceContext);
 	const baseUrl = import.meta.env.VITE_BASE_URL;
 	const filterByHall = async hall => {
-		setServicesList([]);
-		const res = await fetch(`${baseUrl}services/all?hall=${hall}`, {
-			method: "get",
-			headers: { "Content-Type": "application/json" },
-		});
-		const data = await res.json();
-		setServicesList(data);
-		console.log(servicesList);
+		setLoadingService(true);
+		try {
+			setServicesList([]);
+			const res = await fetch(`${baseUrl}services/all?hall=${hall}`, {
+				method: "get",
+				headers: { "Content-Type": "application/json" },
+			});
+			const data = await res.json();
+			setServicesList(data);
+			setLoadingService(false);
+		} catch {
+			setLoadingService(false);
+		}
 	};
 
 	const halls = [

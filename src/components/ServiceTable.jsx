@@ -13,9 +13,11 @@ import {
 import ServiceContext from "../context/ServicesContext";
 
 function ServiceTable() {
-	const { servicesList, setServicesList } = useContext(ServiceContext);
+	const { servicesList, setServicesList, loadingService, setLoadingService } =
+		useContext(ServiceContext);
 	const baseUrl = import.meta.env.VITE_BASE_URL;
 	const getServices = async () => {
+		setLoadingService(true);
 		try {
 			const res = await fetch(`${baseUrl}services/all`, {
 				method: "get",
@@ -23,14 +25,15 @@ function ServiceTable() {
 			});
 			const data = await res.json();
 			setServicesList(data);
-			setServicesListt(data);
-		} catch {}
+			setLoadingService(false);
+		} catch {
+			setLoadingService(false);
+		}
 	};
 
 	useEffect(() => {
 		getServices();
 	}, []);
-	console.log(servicesList);
 	return (
 		<div className="mt-10">
 			<TableContainer>
@@ -46,7 +49,8 @@ function ServiceTable() {
 						</Tr>
 					</Thead>
 					<Tbody>
-						{servicesList.length > 0 &&
+						{!loadingService ? (
+							servicesList.length > 0 &&
 							servicesList.map(service => {
 								return (
 									<Tr key={service.id}>
@@ -59,7 +63,16 @@ function ServiceTable() {
 										<Td>{service.phone}</Td>
 									</Tr>
 								);
-							})}
+							})
+						) : (
+							<Tr>
+								<Td>Loading...</Td>
+								<Td>Loading...</Td>
+								<Td>Loading...</Td>
+								<Td>Loading...</Td>
+								<Td>Loading...</Td>
+							</Tr>
+						)}
 					</Tbody>
 					<Tfoot>
 						<Tr>
