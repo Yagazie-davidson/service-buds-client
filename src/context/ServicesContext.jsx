@@ -5,7 +5,20 @@ export function ServiceProvider({ children }) {
 	const [servicesList, setServicesList] = useState([]);
 	const [loadingService, setLoadingService] = useState(false);
 	const [addServiceState, setAddServiceState] = useState(false);
-
+	const getServices = async baseUrl => {
+		setLoadingService(true);
+		try {
+			const res = await fetch(`${baseUrl}services/all`, {
+				method: "get",
+				headers: { "Content-Type": "application/json" },
+			});
+			const data = await res.json();
+			setServicesList(data);
+			setLoadingService(false);
+		} catch {
+			setLoadingService(false);
+		}
+	};
 	return (
 		<ServiceContext.Provider
 			value={{
@@ -15,6 +28,7 @@ export function ServiceProvider({ children }) {
 				setLoadingService,
 				addServiceState,
 				setAddServiceState,
+				getServices,
 			}}
 		>
 			{" "}
