@@ -7,6 +7,7 @@ import "./index.css";
 import Home from "./pages/Home";
 import Services from "./pages/Services";
 import ErrorPage from "./pages/ErrorPage";
+import { ServiceProvider } from "./context/ServicesContext";
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -22,7 +23,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
 		<ChakraProvider>
-			<RouterProvider router={router} />
+			<ServiceProvider>
+				<RouterProvider router={router} />
+			</ServiceProvider>
 		</ChakraProvider>
 	</React.StrictMode>
 );
