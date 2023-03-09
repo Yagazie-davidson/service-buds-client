@@ -10,14 +10,14 @@ function NavBar() {
 		},
 	];
 	return (
-		<div className="flex">
+		<div className="">
 			<header className="flex items-center justify-between">
 				<div className="">
 					<h1 className="text-2xl">
 						<Link to="/">Service Buds</Link>
 					</h1>
 				</div>
-				<nav className="flex gap-x-5 text-sm text-gr font-medium">
+				<nav className="text-sm text-gr font-medium mr-0 tablet:mr-10">
 					{navItems.map((item, index) => {
 						return (
 							<Link to={item.href} key={index}>
