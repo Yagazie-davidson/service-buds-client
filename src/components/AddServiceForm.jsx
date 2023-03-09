@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
 	FormControl,
 	FormLabel,
@@ -8,9 +8,12 @@ import {
 	Select,
 } from "@chakra-ui/react";
 import Button from "./Button";
+import ServiceContext from "../context/ServicesContext";
+import BeatLoader from "react-spinners/BeatLoader";
 
 function AddServiceForm() {
 	const baseUrl = import.meta.env.VITE_BASE_URL;
+	const { setAddServiceState, getServices } = useContext(ServiceContext);
 	const [email, setEmail] = useState("");
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
@@ -18,7 +21,9 @@ function AddServiceForm() {
 	const [phone, setPhone] = useState("");
 	const [hall, setHall] = useState("");
 	const [room, setRoom] = useState("");
+	const [loading, setLoading] = useState(false);
 	const addService = async () => {
+		setLoading(true);
 		try {
 			const id = Math.floor(100000 + Math.random() * 900000);
 			const date = `${new Date().getDate()}-${
@@ -35,17 +40,20 @@ function AddServiceForm() {
 				room: room.toLowerCase(),
 				date,
 			};
-			console.log(payload);
-
 			const res = await fetch(`${baseUrl}services/new`, {
 				method: "post",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(payload),
 			});
 			const data = await res.json();
+			setLoading(false);
 			console.log(data);
+			setAddServiceState(false);
+			getServices(baseUrl);
 		} catch (error) {
+			setLoading(false);
 			console.log(error);
+			setAddServiceState(false);
 		}
 		set;
 		setEmail("");
@@ -112,8 +120,21 @@ function AddServiceForm() {
 					value={room}
 					onChange={e => setRoom(e.target.value)}
 				/>
-
-				<Button text={"Add service"} onClick={addService} className={"my-10"} />
+				{!loading ? (
+					<Button
+						text={"Add service"}
+						onClick={addService}
+						className={"my-10"}
+					/>
+				) : (
+					<BeatLoader
+						color="black"
+						size={10}
+						aria-label="Loading Spinner"
+						data-testid="loader"
+						className="my-10"
+					/>
+				)}
 			</FormControl>
 		</main>
 	);

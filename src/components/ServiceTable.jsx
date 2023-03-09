@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
 	Table,
 	Thead,
@@ -10,23 +10,20 @@ import {
 	TableCaption,
 	TableContainer,
 } from "@chakra-ui/react";
+import ServiceContext from "../context/ServicesContext";
 
 function ServiceTable() {
+	const {
+		servicesList,
+		setServicesList,
+		loadingService,
+		setLoadingService,
+		getServices,
+	} = useContext(ServiceContext);
 	const baseUrl = import.meta.env.VITE_BASE_URL;
-	const [servicesList, setServicesList] = useState([]);
-	const getServices = async () => {
-		try {
-			const res = await fetch(`${baseUrl}services/all`, {
-				method: "get",
-				headers: { "Content-Type": "application/json" },
-			});
-			const data = await res.json();
-			setServicesList(data);
-		} catch {}
-	};
 
 	useEffect(() => {
-		getServices();
+		getServices(baseUrl);
 	}, []);
 	return (
 		<div className="mt-10">
@@ -43,7 +40,8 @@ function ServiceTable() {
 						</Tr>
 					</Thead>
 					<Tbody>
-						{servicesList.length > 0 &&
+						{!loadingService ? (
+							servicesList.length > 0 &&
 							servicesList.map(service => {
 								return (
 									<Tr key={service.id}>
@@ -56,7 +54,16 @@ function ServiceTable() {
 										<Td>{service.phone}</Td>
 									</Tr>
 								);
-							})}
+							})
+						) : (
+							<Tr>
+								<Td>Loading...</Td>
+								<Td>Loading...</Td>
+								<Td>Loading...</Td>
+								<Td>Loading...</Td>
+								<Td>Loading...</Td>
+							</Tr>
+						)}
 					</Tbody>
 					<Tfoot>
 						<Tr>
