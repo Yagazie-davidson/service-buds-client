@@ -15,7 +15,6 @@ function Services() {
 			<Layout>
 				<main className="mt-10">
 					<h1 className="text-center font-bold text-3xl">Explore Services</h1>
-					<FIlterService />
 					<ServiceTable />
 					<Button onClick={toggleAddServiceForm} text={"Add your service"} />
 					{addServiceState && <AddServiceForm />}
