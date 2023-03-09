@@ -6,10 +6,12 @@ import { ChakraProvider } from "@chakra-ui/react";
 import "./index.css";
 import Home from "./pages/Home";
 import Services from "./pages/Services";
+import ErrorPage from "./pages/ErrorPage";
 const router = createBrowserRouter([
 	{
 		path: "/",
 		element: <Home />,
+		errorElement: <ErrorPage />,
 	},
 	{
 		path: "/services",

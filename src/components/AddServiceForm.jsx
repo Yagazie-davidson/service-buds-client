@@ -37,7 +37,7 @@ function AddServiceForm() {
 			};
 			console.log(payload);
 
-			const res = await fetch(`${baseUrl}/services/new`, {
+			const res = await fetch(`${baseUrl}services/new`, {
 				method: "post",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(payload),
