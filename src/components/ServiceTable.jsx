@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
 	Table,
 	Thead,
@@ -10,10 +10,11 @@ import {
 	TableCaption,
 	TableContainer,
 } from "@chakra-ui/react";
+import ServiceContext from "../context/ServicesContext";
 
 function ServiceTable() {
+	const { servicesList, setServicesList } = useContext(ServiceContext);
 	const baseUrl = import.meta.env.VITE_BASE_URL;
-	const [servicesList, setServicesList] = useState([]);
 	const getServices = async () => {
 		try {
 			const res = await fetch(`${baseUrl}services/all`, {
@@ -22,12 +23,14 @@ function ServiceTable() {
 			});
 			const data = await res.json();
 			setServicesList(data);
+			setServicesListt(data);
 		} catch {}
 	};
 
 	useEffect(() => {
 		getServices();
 	}, []);
+	console.log(servicesList);
 	return (
 		<div className="mt-10">
 			<TableContainer>
