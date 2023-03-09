@@ -35,7 +35,7 @@ function FIlterService() {
 	return (
 		<div className="flex items-center gap-x-5">
 			<h2>FIlter Service</h2> |
-			<div className="flex justify-between gap-x-16 flex-nowrap">
+			<div className="flex justify-between gap-x-16 overflow-x-auto">
 				{halls.map((hall, index) => {
 					return (
 						<button
