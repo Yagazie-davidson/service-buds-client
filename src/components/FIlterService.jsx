@@ -46,6 +46,7 @@ function FIlterService() {
 						</button>
 					);
 				})}
+				<button onClick={() => filterByHall("")}>Clear</button>
 			</div>
 		</div>
 	);
