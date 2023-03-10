@@ -33,7 +33,7 @@ function FIlterService() {
 		"Fagunwa",
 	];
 	return (
-		<div className="flex items-center gap-x-5">
+		<div className="flex items-center gap-x-5 mt-7">
 			<h2>FIlter Service</h2> |
 			<div className="flex justify-between gap-x-16 overflow-x-auto">
 				{halls.map((hall, index) => {
@@ -46,6 +46,7 @@ function FIlterService() {
 						</button>
 					);
 				})}
+				<button onClick={() => filterByHall("")}>Clear</button>
 			</div>
 		</div>
 	);

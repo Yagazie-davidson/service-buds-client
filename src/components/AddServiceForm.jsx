@@ -49,6 +49,7 @@ function AddServiceForm() {
 			setLoading(false);
 			console.log(data);
 			setAddServiceState(false);
+			alert(data.message);
 			getServices(baseUrl);
 		} catch (error) {
 			setLoading(false);
