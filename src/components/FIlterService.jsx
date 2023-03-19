@@ -29,6 +29,7 @@ function FIlterService() {
 		"Kofo",
 		"Biobaku",
 		"Makama",
+		"Mariere",
 		"Amina",
 		"Fagunwa",
 	];

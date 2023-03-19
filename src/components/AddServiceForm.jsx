@@ -111,6 +111,7 @@ function AddServiceForm() {
 					<option value="madam tinubu">Madam Tinubu Hall (MTH)</option>
 					<option value="kofo">Kofo Hall</option>
 					<option value="biobaku">Biobaku Hall</option>
+					<option value="mariere">Mariere Hall</option>
 					<option value="makama">Makama Hall</option>
 					<option value="amina">Amina Hall</option>
 					<option value="fagunwa">Fagunwa Hall</option>
