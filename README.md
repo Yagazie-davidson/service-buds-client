@@ -26,13 +26,13 @@ The code base of this repo uses React JS, Tailwind CSS <br> <br>
    ```console
    $ yarn
    ```
-5. Start the project with vite
+5. Start the project with Vite
 
    ```console
    $ yarn run dev
    ```
-### Enviroment Variable
-`VITE_BASE_URL = ********` contact Author
+### Environment Variable
+`VITE_BASE_URL = ********` Contact Author
 ### Server side Repo
 <a href="https://github.com/Yagazie-davidson/service-buds-server">Server</a>
 
